@@ -1,0 +1,34 @@
+package com.tymdoc.service.translator;
+
+/**
+ * 翻译
+ *
+ * @author icepring
+ * @date 2019/11/25
+ */
+public interface Translator {
+
+    /**
+     * 英译中
+     *
+     * @param text 文本
+     * @return {@link String}
+     */
+    String en2Ch(String text);
+
+    String en2Ja(String text);
+
+    /**
+     * 中译英
+     *
+     * @param text 文本
+     * @return {@link String}
+     */
+    String ch2En(String text);
+
+    /**
+     * 清除缓存
+     */
+    void clearCache();
+
+}

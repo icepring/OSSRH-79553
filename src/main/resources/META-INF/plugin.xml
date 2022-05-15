@@ -1,0 +1,59 @@
+<idea-plugin>
+    <id>com.tymdoc.javadoc</id>
+    <name>Tym Javadoc</name>
+    <vendor email="legendarytym@gmail.com" url="https://github.com/icepring">Android要粮</vendor>
+
+    <description><![CDATA[
+      This plugin can help you complete the Japanese javadoc document quickly.<br>
+      这只是一个简单的注释翻译工具，其实看英语就知道意思了，为啥还要翻译成日语了，
+      我日语水平也不高，机翻机翻。
+    ]]></description>
+
+    <change-notes><![CDATA[
+      1.0
+    ]]>
+    </change-notes>
+
+    <idea-version since-build="181"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <applicationService serviceImplementation="com.tymdoc.config.EasyJavadocConfigComponent" order="first"/>
+        <applicationService serviceImplementation="com.tymdoc.service.DocGeneratorService"/>
+        <applicationService serviceImplementation="com.tymdoc.service.WriterService"/>
+        <applicationService serviceImplementation="com.tymdoc.service.TranslatorService"/>
+        <applicationService serviceImplementation="com.tymdoc.service.VariableGeneratorService"/>
+<!--        <applicationConfigurable displayName="TymJavadoc" instance="com.tymdoc.view.CommonConfigurable">-->
+<!--            <configurable instance="com.tymdoc.view.template.ClassConfigurable"/>-->
+<!--            <configurable instance="com.tymdoc.view.template.MethodConfigurable"/>-->
+<!--            <configurable instance="com.tymdoc.view.template.FieldConfigurable"/>-->
+<!--        </applicationConfigurable>-->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="com.tym.javadoc" text="TymJavadoc" description="TymJavadoc" popup="true">
+            <separator/>
+            <group id="EasyJavadocSubGroup"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="javadoc.generator" class="com.tymdoc.action.GenerateJavadocAction" text="GenerateJavadoc"
+                    description="GenerateJavadoc">
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta BACK_SLASH"/>
+                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="meta BACK_SLASH"/>
+                <keyboard-shortcut keymap="Default for XWin" first-keystroke="ctrl BACK_SLASH"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="meta BACK_SLASH"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl BACK_SLASH"/>
+            </action>
+        </group>
+        <action id="javadoc.generatorAll" class="com.tymdoc.action.GenerateAllJavadocAction" text="生成文档注释">
+            <add-to-group group-id="JavaGenerateGroup1" anchor="before" relative-to-action="GenerateEquals"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift BACK_SLASH"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="meta shift BACK_SLASH"/>
+            <keyboard-shortcut keymap="Default for XWin" first-keystroke="ctrl shift BACK_SLASH"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta shift BACK_SLASH"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift BACK_SLASH"/>
+        </action>
+    </actions>
+
+    <depends>com.intellij.modules.java</depends>
+</idea-plugin>
